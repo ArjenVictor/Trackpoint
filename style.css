@@ -1,0 +1,229 @@
+/* TrackPoint styles (index.html + share.html) */
+:root {
+    --paper: rgba(255, 255, 255, 0.06);
+    --line: rgba(255, 255, 255, 0.12);
+    --muted: #94a3b8;
+    --teal: #14b8a6;
+    --glass: rgba(18, 26, 31, 0.78);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+[hidden], .welcome, .map-heading, .map-note, .footer, .tracking-panel > h2, .tracking-panel > .description {
+    display: none !important;
+}
+
+body {
+    font-family: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+    background: #0f171a;
+    color: #f8fafc;
+    line-height: 1.5;
+}
+
+/* Full-screen Map & Bottom-Right Zoom Controls */
+.map-panel, #map {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.leaflet-top.leaflet-left {
+    top: auto;
+    left: auto;
+    bottom: 24px;
+    right: 20px;
+}
+
+.leaflet-bar a {
+    background: rgba(18, 26, 31, 0.85) !important;
+    color: #fff !important;
+    border-bottom: 1px solid var(--line) !important;
+}
+
+/* Floating Glass Sidebar & Header (index.html) */
+.header, .tracking-panel {
+    position: fixed;
+    left: 20px;
+    width: 360px;
+}
+
+.header {
+    top: 20px;
+    z-index: 1001;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
+.logo svg { width: 24px; height: 24px; color: var(--teal); }
+
+.header-status {
+    font-size: 12px;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    margin-right: 6px;
+}
+
+.tracking-panel {
+    top: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 72px 20px 20px;
+    overflow-y: auto;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.tracking-panel::-webkit-scrollbar { width: 5px; }
+.tracking-panel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+
+h3 { font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
+
+/* Status & Telemetry Cards */
+.tracking-status, .detail-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.tracking-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#statusDot, .dot { width: 10px; height: 10px; border-radius: 50%; background: #64748b; flex: none; }
+.pending .dot { background: #f59e0b; }
+.active .dot  { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.ended .dot   { background: #ef4444; }
+
+.location-details { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.location-details h3 { grid-column: 1 / -1; margin-bottom: 2px; }
+.detail-card { padding: 9px 12px; }
+.detail-card:last-child { grid-column: 1 / -1; }
+.detail-card span { display: block; color: var(--muted); font-size: 11px; }
+.detail-card strong { font-size: 13px; overflow-wrap: anywhere; }
+
+/* Buttons */
+button, .rq-btn {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font: 600 14px inherit;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.start-btn { background: linear-gradient(135deg, #10b981, #0d9488); border: none; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); }
+#rqSend { background: rgba(255, 255, 255, 0.14); margin-top: 12px; }
+#rqSend:hover { background: rgba(255, 255, 255, 0.22); }
+.rq-btn { margin-top: 10px; }
+.rq-btn.green { background: #1fa855; border-color: #1fa855; }
+
+/* Request Location Form */
+.rq-panel { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.rq-panel p, .rq-panel label, .rq-linkbox code, .privacy-note { color: var(--muted); font-size: 12px; }
+.rq-panel label { display: block; font-weight: 600; margin: 10px 0 4px; }
+.rq-panel input {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    color: #fff;
+    font: 13px inherit;
+}
+.rq-panel input::placeholder { color: #64748b; }
+.rq-linkbox code { display: block; margin: 8px 0; font-size: 11px; word-break: break-all; }
+
+/* Orange map pin (the point of the pin sits on your location) */
+.orange-pin svg {
+    display: block;
+    filter: drop-shadow(0 0 6px rgba(242, 107, 33, 0.8)) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+}
+
+/* Handle that collapses the panel (phones only) */
+.panel-toggle { display: none; }
+
+/* share.html Layout Fix (keeps header at top & card centered below it) */
+body:has(.share-page) .header {
+    position: static;
+    width: 100%;
+    background: rgba(18, 26, 31, 0.9);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 5%;
+    pointer-events: auto;
+}
+
+.container { width: 92%; max-width: 1320px; margin: 28px auto 0; }
+.share-page { max-width: 480px; margin: 40px auto; }
+.share-card { background: #121a1f; border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.share-card h2 { font-size: 22px; margin-bottom: 8px; }
+.share-card .description { font-size: 15px; margin-bottom: 18px; color: var(--muted); }
+.share-card button { padding: 15px; font-size: 16px; margin-bottom: 10px; }
+
+/* Mobile Layout */
+@media (max-width: 900px) {
+    body:not(:has(.share-page)) .header, .tracking-panel { width: calc(100% - 24px); left: 12px; }
+    body:not(:has(.share-page)) .header {
+        top: 12px;
+        background: var(--glass);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+    }
+    .tracking-panel { top: auto; bottom: 12px; max-height: 55vh; padding-top: 20px; }
+    .leaflet-top.leaflet-left { bottom: auto; top: 82px; right: 12px; }
+
+    .panel-toggle {
+        display: block;
+        height: 28px;
+        margin: -10px 0 6px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+    }
+    .panel-toggle::before {
+        content: "";
+        display: block;
+        width: 44px;
+        height: 5px;
+        margin: 11px auto 0;
+        border-radius: 999px;
+        background: #64748b;
+    }
+    .tracking-panel.collapsed .location-details,
+    .tracking-panel.collapsed .rq-panel { display: none; }
+}

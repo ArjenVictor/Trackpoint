@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackPoint</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+            TrackPoint
+        </div>
+        <div class="header-status"><span class="status-dot"></span>Uses your device GPS</div>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h1>Follow a phone on the map</h1>
+            <p>Track this device with GPS, or ask someone to share their location with you.</p>
+        </section>
+
+        <section class="dashboard">
+
+            <div class="tracking-panel">
+                <button id="panelToggle" class="panel-toggle" type="button" aria-label="Show or hide details" aria-expanded="true"></button>
+                <h2>Track this device</h2>
+                <p class="description">Start tracking to see your live location on the map.</p>
+
+                <div class="tracking-status">
+                    <span id="statusDot"></span>
+                    <span id="trackingStatus">Tracking Inactive</span>
+                </div>
+
+                <div class="controls">
+                    <button id="startBtn" class="start-btn">Start tracking</button>
+                    <button id="stopBtn" disabled>Stop</button>
+                </div>
+
+                <div class="location-details">
+                    <h3>Live readings</h3>
+                    <div class="detail-card"><span>Latitude</span><strong id="latitude">Not available</strong></div>
+                    <div class="detail-card"><span>Longitude</span><strong id="longitude">Not available</strong></div>
+                    <div class="detail-card"><span>Accuracy</span><strong id="accuracy">Not available</strong></div>
+                    <div class="detail-card"><span>Last updated</span><strong id="lastUpdated">Not available</strong></div>
+                    <div class="detail-card"><span>Direction</span><strong id="direction">Not available</strong></div>
+                    <div class="detail-card"><span>Speed</span><strong id="speed">Not available</strong></div>
+                    <div class="detail-card"><span>Distance travelled</span><strong id="distance">0 m</strong></div>
+                </div>
+
+                <div class="rq-panel">
+                    <h3>Request a Location</h3>
+                    <p>Ask someone to share their location. Tracking starts only if they accept, and they appear on the map.</p>
+
+                    <label for="rqName">Your name</label>
+                    <input type="text" id="rqName" placeholder="e.g. Kevin" autocomplete="name">
+
+                    <label for="rqPhone">Their WhatsApp number (optional)</label>
+                    <input type="tel" id="rqPhone" placeholder="e.g. 256700123456" inputmode="numeric">
+
+                    <button class="rq-btn" id="rqSend" type="button">Create request</button>
+
+                    <div class="rq-linkbox" id="rqLinkBox" hidden>
+                        <a class="rq-btn green" id="rqWhatsapp" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+                        <button class="rq-btn" id="rqCopy" type="button">Copy link</button>
+                        <code id="rqLinkText"></code>
+                    </div>
+
+                    <p id="rqStatus">No request sent yet.</p>
+                    <p id="rqDetails"></p>
+                </div>
+            </div>
+
+            <div class="map-panel">
+                <div class="map-heading">
+                    <h2>Live map</h2>
+                    <span>OpenStreetMap</span>
+                </div>
+                <div id="map"></div>
+                <p class="map-note">Your location appears here once tracking starts.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>TrackPoint &copy; 2026</p>
+        <p>Your location is only used after you give permission.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

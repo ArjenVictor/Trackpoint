@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share Location - TrackPoint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+      TrackPoint
+    </div>
+    <div class="header-status"><span class="status-dot"></span>Location Request</div>
+  </header>
+
+  <main class="container share-page">
+    <section class="share-card">
+      <h2 id="title">Loading request...</h2>
+      <p class="description" id="message">Please wait.</p>
+
+      <button id="acceptBtn" class="start-btn" hidden>Accept and share my location</button>
+      <button id="declineBtn" hidden>Decline</button>
+      <button id="stopBtn" hidden>Stop sharing</button>
+
+      <div class="tracking-status" id="statusBox">
+        <span class="dot"></span>
+        <span id="statusText">Not sharing your location.</span>
+      </div>
+
+      <p class="privacy-note">
+        Your location is sent only after you accept, and only while this page is open.
+        You can stop at any time.
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="share.js"></script>
+</body>
+</html>
