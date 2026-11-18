@@ -151,10 +151,33 @@ declineBtn.addEventListener("click", async () => {
 
 stopBtn.addEventListener("click", async () => {
   stopWatching();
-  await saveStatus("stopped");
-  setButtons({});
-  show("Sharing stopped", "Your location is no longer being shared. You can close this page.");
-  setStatus("Not sharing your location.", "ended");
+
+  try {
+    await updateDoc(requestRef, {
+      status: "stopped",
+      latitude: deleteField(),
+      longitude: deleteField(),
+      accuracy: deleteField(),
+      heading: deleteField(),
+      speed: deleteField(),
+      updated: serverTimestamp()
+    });
+
+    
+    setButtons({});
+
+    show(
+      "Sharing stopped",
+      "Your location is no longer being shared. Your previous coordinates have been cleared."
+    );
+
+    setStatus("Not sharing your location.", "ended");
+
+  } catch (error) {
+    console.error("Could not stop sharing:", error);
+    setStatus("Could not update sharing status. Please retry.", "ended");
+  }
 });
+
 
 loadRequest();
