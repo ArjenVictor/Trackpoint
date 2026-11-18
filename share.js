@@ -49,7 +49,9 @@ function stopWatching() {
     watchId = null;
   }
 }
-
+window.addEventListener("pagehide", () => {
+  stopWatching();
+});
 
 /* Load the request named in the link */
 async function loadRequest() {
