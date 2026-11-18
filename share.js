@@ -1,9 +1,13 @@
 /* TrackPoint share page: the tracked person accepts, then their location is sent */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, doc, getDoc, updateDoc, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp,
+  deleteField
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 const db = getFirestore(initializeApp({
   apiKey: "AIzaSyB3C9xCuYMSzwmxAekW4oq-ffKosktoKtw",
   authDomain: "finder-ca3cc.firebaseapp.com",
